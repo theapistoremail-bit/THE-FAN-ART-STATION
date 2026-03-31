@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fan Art Station — Artistas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red:#e61212; --red-dark:#8b0000; --red-mid:#b30000; --red-light:#ff6b6b;
+            --yellow:#FFE600; --black:#111; --white:#f9f7f0; --gray:#333;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background-color:var(--white);background-image:radial-gradient(circle,#e61212 1px,transparent 1px);background-size:28px 28px;background-attachment:fixed;font-family:'Nunito',sans-serif;color:var(--black);}
+        header{background:var(--red);position:sticky;top:0;z-index:1000;border-bottom:4px solid var(--black);box-shadow:0 6px 0 var(--red-dark);}
+        .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:70px;}
+        .logo{font-family:'Bangers',cursive;font-size:2rem;color:var(--yellow);text-shadow:3px 3px 0 var(--black);letter-spacing:2px;transform:rotate(-2deg);display:inline-block;}
+        .logo span{color:white;}
+        nav ul{list-style:none;display:flex;gap:4px;}
+        nav a{font-family:'Bangers',cursive;color:white;text-decoration:none;font-size:1.15rem;letter-spacing:1px;padding:6px 14px;border-radius:4px;border:2px solid transparent;transition:all .2s;}
+        nav a:hover,nav a.active{color:var(--yellow);border-color:var(--yellow);background:rgba(0,0,0,.15);}
+        .wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+
+        /* PAGE HERO */
+        .page-hero{
+            background:var(--black); border-bottom:5px solid var(--yellow);
+            padding:80px 0 60px; position:relative; overflow:hidden; text-align:center;
+        }
+        .page-hero::before{
+            content:''; position:absolute; inset:0;
+            background-image:radial-gradient(circle,rgba(230,18,18,.25) 1.5px,transparent 1.5px);
+            background-size:20px 20px;
+        }
+        .page-hero-accent{
+            position:absolute; bottom:0; left:0; width:100%; height:6px;
+            background:repeating-linear-gradient(90deg,var(--yellow) 0,var(--yellow) 20px,var(--red) 20px,var(--red) 40px);
+        }
+        .page-hero-content{position:relative;z-index:2;}
+        .page-kicker{font-family:'Permanent Marker',cursive;font-size:1rem;color:var(--yellow);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+        .page-h1{font-family:'Bangers',cursive;font-size:clamp(3rem,8vw,5.5rem);color:white;letter-spacing:3px;text-shadow:5px 5px 0 var(--red-dark);line-height:1;margin-bottom:14px;}
+        .page-h1 span{color:var(--yellow);}
+        .page-sub{font-size:1.1rem;color:#bbb;max-width:560px;margin:0 auto;line-height:1.7;}
+
+        /* SECTION LABEL */
+        .sec-label{display:inline-block;font-family:'Permanent Marker',cursive;font-size:.85rem;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;}
+        .sec-title{font-family:'Bangers',cursive;font-size:clamp(2rem,5vw,3rem);letter-spacing:2px;color:var(--black);text-shadow:3px 3px 0 var(--red-light);line-height:1.1;}
+
+        /* FEATURED ARTIST */
+        .featured-artist{padding:80px 0 60px;}
+        .fa-inner{
+            display:grid;grid-template-columns:1fr 1.5fr;gap:40px;align-items:center;
+            background:white;border:4px solid var(--black);border-radius:14px;
+            box-shadow:8px 8px 0 var(--black);overflow:hidden;
+        }
+        .fa-img{position:relative;height:520px;overflow:hidden;}
+        .fa-img img{width:100%;height:100%;object-fit:cover;display:block;}
+        .fa-ribbon{
+            position:absolute;top:24px;left:-10px;
+            background:var(--red);color:white;font-family:'Bangers',cursive;
+            font-size:1rem;letter-spacing:2px;padding:8px 24px 8px 20px;
+            border:2px solid var(--black);border-radius:0 4px 4px 0;
+            box-shadow:3px 3px 0 var(--black);
+        }
+        .fa-info{padding:40px 40px 40px 20px;}
+        .fa-badge{
+            display:inline-block;background:var(--yellow);color:var(--black);
+            font-family:'Bangers',cursive;font-size:1rem;letter-spacing:2px;
+            padding:5px 14px;border:3px solid var(--black);border-radius:4px;
+            box-shadow:3px 3px 0 var(--black);margin-bottom:16px;
+        }
+        .fa-name{font-family:'Bangers',cursive;font-size:3rem;letter-spacing:2px;color:var(--black);text-shadow:3px 3px 0 var(--red-light);line-height:1;margin-bottom:8px;}
+        .fa-handle{font-size:.9rem;color:var(--red);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;}
+        .fa-bio{font-size:.98rem;color:#555;line-height:1.8;margin-bottom:24px;}
+        .fa-stats{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:28px;}
+        .fa-stat{text-align:center;}
+        .fa-stat-n{font-family:'Bangers',cursive;font-size:2rem;color:var(--red);line-height:1;display:block;}
+        .fa-stat-l{font-size:.78rem;color:#888;text-transform:uppercase;letter-spacing:1px;}
+        .fa-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+        .fa-tag{font-size:.8rem;font-weight:700;padding:4px 12px;border:2px solid var(--black);border-radius:3px;background:#f0f0f0;text-transform:uppercase;letter-spacing:.5px;}
+        .btn-main{font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:1px;background:var(--red);color:white;text-decoration:none;padding:13px 30px;border:3px solid var(--black);border-radius:6px;box-shadow:5px 5px 0 var(--black);transition:all .15s;display:inline-block;}
+        .btn-main:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--black);}
+        .btn-alt{font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:1px;background:white;color:var(--black);text-decoration:none;padding:13px 30px;border:3px solid var(--black);border-radius:6px;box-shadow:5px 5px 0 var(--black);transition:all .15s;display:inline-block;}
+        .btn-alt:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--black);background:var(--yellow);}
+
+        /* GALLERY PREVIEW */
+        .gallery-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px;}
+        .gs-item{aspect-ratio:1;border:3px solid var(--black);border-radius:6px;overflow:hidden;box-shadow:3px 3px 0 var(--black);transition:all .2s;cursor:pointer;}
+        .gs-item:hover{transform:scale(1.04);}
+        .gs-item img{width:100%;height:100%;object-fit:cover;display:block;}
+
+        /* ALL ARTISTS GRID */
+        .artists-section{padding:0 0 80px;}
+        .artists-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-top:36px;}
+        .artist-card{
+            background:white;border:3px solid var(--black);border-radius:10px;
+            overflow:hidden;box-shadow:5px 5px 0 var(--black);
+            transition:all .2s;
+        }
+        .artist-card:nth-child(odd){transform:rotate(.8deg);}
+        .artist-card:nth-child(even){transform:rotate(-.6deg);}
+        .artist-card:hover{transform:translateY(-6px) rotate(0)!important;box-shadow:10px 10px 0 var(--black);}
+        .ac-header{position:relative;height:200px;overflow:hidden;}
+        .ac-header img{width:100%;height:100%;object-fit:cover;display:block;}
+        .ac-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);}
+        .ac-genre{
+            position:absolute;top:12px;right:12px;
+            background:var(--yellow);color:var(--black);
+            font-family:'Bangers',cursive;font-size:.85rem;letter-spacing:1px;
+            padding:3px 10px;border:2px solid var(--black);border-radius:3px;
+        }
+        .ac-body{padding:20px;}
+        .ac-avatar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+        .ac-avatar{width:54px;height:54px;border-radius:50%;border:3px solid var(--black);box-shadow:3px 3px 0 var(--black);object-fit:cover;}
+        .ac-name{font-family:'Bangers',cursive;font-size:1.5rem;letter-spacing:1px;color:var(--black);}
+        .ac-handle{font-size:.82rem;color:var(--red);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+        .ac-bio{font-size:.88rem;color:#666;line-height:1.6;margin-bottom:14px;}
+        .ac-stats{display:flex;gap:16px;margin-bottom:16px;}
+        .ac-s{font-family:'Bangers',cursive;font-size:1rem;letter-spacing:.5px;color:var(--gray);}
+        .ac-s span{color:var(--red);}
+        .ac-btn{
+            display:block;width:100%;padding:9px;
+            font-family:'Bangers',cursive;font-size:1.1rem;letter-spacing:1px;
+            background:var(--red);color:white;text-align:center;
+            text-decoration:none;border:3px solid var(--black);border-radius:6px;
+            box-shadow:3px 3px 0 var(--black);transition:all .15s;
+        }
+        .ac-btn:hover{background:var(--red-dark);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--black);}
+
+        /* SUBMIT CTA */
+        .submit-band{
+            background:var(--red);border-top:4px solid var(--black);border-bottom:4px solid var(--black);
+            padding:70px 0;text-align:center;
+        }
+        .submit-band h2{font-family:'Bangers',cursive;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:3px;color:white;text-shadow:4px 4px 0 var(--black);margin-bottom:14px;}
+        .submit-band p{color:rgba(255,255,255,.8);font-size:1.05rem;max-width:560px;margin:0 auto 28px;line-height:1.7;}
+        .btn-yellow{font-family:'Bangers',cursive;font-size:1.3rem;letter-spacing:1px;background:var(--yellow);color:var(--black);text-decoration:none;padding:14px 32px;border:3px solid var(--black);border-radius:6px;box-shadow:5px 5px 0 var(--black);transition:all .15s;display:inline-block;}
+        .btn-yellow:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--black);}
+
+        /* FOOTER */
+        footer{background:var(--black);color:white;border-top:5px solid var(--red);padding:50px 0 30px;}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+        .footer-brand .logo{font-size:1.8rem;margin-bottom:14px;display:block;}
+        .footer-brand p{color:#999;font-size:.9rem;line-height:1.7;}
+        .footer-col h4{font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:2px;color:var(--yellow);margin-bottom:16px;}
+        .footer-col a{display:block;color:#aaa;text-decoration:none;margin-bottom:9px;font-size:.9rem;transition:color .2s,transform .2s;}
+        .footer-col a:hover{color:white;transform:translateX(4px);}
+        .social-row{display:flex;gap:10px;margin-top:16px;}
+        .soc{width:38px;height:38px;background:var(--red);color:white;border:2px solid var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:'Bangers',cursive;font-size:.9rem;transition:all .15s;}
+        .soc:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow);transform:translateY(-3px);}
+        .footer-bottom{border-top:1px solid #333;padding-top:24px;display:flex;justify-content:space-between;color:#555;font-size:.85rem;flex-wrap:wrap;gap:10px;}
+        .wa-float{position:fixed;bottom:90px;right:28px;width:56px;height:56px;background:#25D366;border:3px solid var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:4px 4px 0 var(--black);text-decoration:none;font-size:1.5rem;z-index:999;transition:all .2s;}
+        .wa-float:hover{transform:scale(1.1);}
+        @media(max-width:900px){.fa-inner{grid-template-columns:1fr;}.fa-img{height:280px;}.footer-grid{grid-template-columns:1fr 1fr;}.gallery-strip{grid-template-columns:repeat(2,1fr);}}
+        @media(max-width:640px){.header-inner{flex-wrap:wrap;height:auto;padding:12px 16px;gap:10px;}nav ul{flex-wrap:wrap;gap:2px;}.footer-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="logo">THE <span>FAN ART</span> STATION</div>
+        <nav><ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="shop.html">Tienda</a></li>
+            <li><a href="artists.html" class="active">Artistas</a></li>
+            <li><a href="about.html">Sobre Mí</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+        </ul></nav>
+        <a href="shop.html" style="font-family:'Bangers',cursive;font-size:1rem;background:var(--yellow);color:var(--black);border:3px solid var(--black);border-radius:6px;padding:6px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--black);transition:all .15s;letter-spacing:1px;text-decoration:none;">🛍️ Tienda</a>
+    </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="page-hero-content">
+        <p class="page-kicker">✦ Mentes Creativas ✦</p>
+        <h1 class="page-h1">LOS <span>ARTISTAS</span></h1>
+        <p class="page-sub">Conoce a las mentes detrás de cada trazo. Artistas apasionados que convierten el fan art en arte de verdad.</p>
+    </div>
+    <div class="page-hero-accent"></div>
+</section>
+
+<!-- FEATURED ARTIST -->
+<section class="featured-artist">
+    <div class="wrap">
+        <span class="sec-label">Artista Destacado del Mes</span>
+        <h2 class="sec-title" style="margin-bottom:30px;">CREADOR PRINCIPAL</h2>
+        <div class="fa-inner">
+            <div class="fa-img">
+                <img src="https://picsum.photos/seed/artist_main/500/600" alt="Artista Principal">
+                <span class="fa-ribbon">⭐ ARTISTA PRINCIPAL</span>
+            </div>
+            <div class="fa-info">
+                <span class="fa-badge">🎨 FUNDADOR · THE FAN ART STATION</span>
+                <h2 class="fa-name">TU NOMBRE AQUÍ</h2>
+                <p class="fa-handle">@tu_handle · Redbubble · Instagram</p>
+                <p class="fa-bio">Ilustrador digital con pasión por el arte fan desde 2015. Me especializo en reinterpretar personajes icónicos de cómics, anime y videojuegos con un estilo propio que mezcla lo clásico con lo contemporáneo. Cada obra es una carta de amor a los universos que me formaron.</p>
+                <div class="fa-stats">
+                    <div class="fa-stat"><span class="fa-stat-n">+50</span><span class="fa-stat-l">Obras</span></div>
+                    <div class="fa-stat"><span class="fa-stat-n">⭐5.0</span><span class="fa-stat-l">Rating</span></div>
+                    <div class="fa-stat"><span class="fa-stat-n">8+</span><span class="fa-stat-l">Años creando</span></div>
+                    <div class="fa-stat"><span class="fa-stat-n">🌍</span><span class="fa-stat-l">Envío global</span></div>
+                </div>
+                <div class="fa-tags">
+                    <span class="fa-tag">Superhéroes</span>
+                    <span class="fa-tag">Anime</span>
+                    <span class="fa-tag">Retro Pop</span>
+                    <span class="fa-tag">Digital Art</span>
+                    <span class="fa-tag">Villanos</span>
+                </div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                    <a href="shop.html" class="btn-main">🛒 Ver mis Obras</a>
+                    <a href="about.html" class="btn-alt">Conocer más →</a>
+                </div>
+                <div class="gallery-strip" style="margin-top:24px;">
+                    <div class="gs-item"><img src="https://picsum.photos/seed/gs1/200/200" alt=""></div>
+                    <div class="gs-item"><img src="https://picsum.photos/seed/gs2/200/200" alt=""></div>
+                    <div class="gs-item"><img src="https://picsum.photos/seed/gs3/200/200" alt=""></div>
+                    <div class="gs-item"><img src="https://picsum.photos/seed/gs4/200/200" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MORE ARTISTS / COLABS -->
+<section class="artists-section">
+    <div class="wrap">
+        <span class="sec-label">Colaboradores y Artistas Invitados</span>
+        <h2 class="sec-title">MÁS CREADORES</h2>
+        <div class="artists-grid">
+
+            <div class="artist-card">
+                <div class="ac-header">
+                    <img src="https://picsum.photos/seed/art2bg/400/220" alt="">
+                    <div class="ac-overlay"></div>
+                    <span class="ac-genre">Anime</span>
+                </div>
+                <div class="ac-body">
+                    <div class="ac-avatar-row">
+                        <img class="ac-avatar" src="https://picsum.photos/seed/av10/80/80" alt="">
+                        <div><div class="ac-name">Sakura Ink</div><div class="ac-handle">@sakuraink_art</div></div>
+                    </div>
+                    <p class="ac-bio">Especialista en estilo anime y chibi. Sus colecciones de stickers son las más vendidas de la plataforma.</p>
+                    <div class="ac-stats">
+                        <span class="ac-s"><span>18</span> Obras</span>
+                        <span class="ac-s"><span>★4.9</span> Rating</span>
+                    </div>
+                    <a href="shop.html" class="ac-btn">Ver Obras</a>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="ac-header">
+                    <img src="https://picsum.photos/seed/art3bg/400/220" alt="">
+                    <div class="ac-overlay"></div>
+                    <span class="ac-genre">Retro</span>
+                </div>
+                <div class="ac-body">
+                    <div class="ac-avatar-row">
+                        <img class="ac-avatar" src="https://picsum.photos/seed/av11/80/80" alt="">
+                        <div><div class="ac-name">RetroVision</div><div class="ac-handle">@retrovision_art</div></div>
+                    </div>
+                    <p class="ac-bio">Maestro del halftone y la estética pop art. Sus reinterpretaciones retro de héroes modernos son icónicas.</p>
+                    <div class="ac-stats">
+                        <span class="ac-s"><span>24</span> Obras</span>
+                        <span class="ac-s"><span>★5.0</span> Rating</span>
+                    </div>
+                    <a href="shop.html" class="ac-btn">Ver Obras</a>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="ac-header">
+                    <img src="https://picsum.photos/seed/art4bg/400/220" alt="">
+                    <div class="ac-overlay"></div>
+                    <span class="ac-genre">Villanos</span>
+                </div>
+                <div class="ac-body">
+                    <div class="ac-avatar-row">
+                        <img class="ac-avatar" src="https://picsum.photos/seed/av12/80/80" alt="">
+                        <div><div class="ac-name">Dark Brush</div><div class="ac-handle">@darkbrush_studio</div></div>
+                    </div>
+                    <p class="ac-bio">Especialista en villanos y personajes oscuros. Dominador del claroscuro digital y las composiciones dramáticas.</p>
+                    <div class="ac-stats">
+                        <span class="ac-s"><span>31</span> Obras</span>
+                        <span class="ac-s"><span>★4.8</span> Rating</span>
+                    </div>
+                    <a href="shop.html" class="ac-btn">Ver Obras</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SUBMIT -->
+<section class="submit-band">
+    <div class="wrap">
+        <h2>¿ERES ARTISTA FAN?</h2>
+        <p>¿Creas fan art y quieres que tu trabajo llegue a más personas? Únete a la estación y vende junto a nosotros.</p>
+        <a href="contact.html" class="btn-yellow">📩 Contáctanos para Colaborar</a>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo">THE <span>FAN ART</span> STATION</span>
+                <p>Arte fan original creado con pasión. Todos los productos disponibles en Redbubble con envío a todo el mundo.</p>
+                <div class="social-row">
+                    <a href="#" class="soc">FB</a><a href="#" class="soc">IG</a><a href="#" class="soc">TW</a><a href="https://www.redbubble.com" class="soc" target="_blank">RB</a>
+                </div>
+            </div>
+            <div class="footer-col"><h4>Tienda</h4><a href="shop.html">Superhéroes</a><a href="shop.html">Villanos</a><a href="shop.html">Anime</a><a href="shop.html">Retro</a></div>
+            <div class="footer-col"><h4>Info</h4><a href="index.html">Inicio</a><a href="shop.html">Tienda</a><a href="artists.html">Artistas</a><a href="about.html">Sobre Mí</a><a href="contact.html">Contacto</a></div>
+            <div class="footer-col"><h4>Ayuda</h4><a href="#">Envíos</a><a href="#">Devoluciones</a><a href="#">FAQ</a><a href="contact.html">Contacto</a></div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 The Fan Art Station. Todos los derechos reservados.</span>
+            <span>Hecho con ❤️ y mucha tinta</span>
+        </div>
+    </div>
+</footer>
+<a href="https://wa.me/521TUNUMERO" class="wa-float">💬</a>
+</body>
+</html>

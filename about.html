@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fan Art Station — Sobre Mí</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root{--red:#e61212;--red-dark:#8b0000;--red-mid:#b30000;--red-light:#ff6b6b;--yellow:#FFE600;--black:#111;--white:#f9f7f0;--gray:#333;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background-color:var(--white);background-image:radial-gradient(circle,#e61212 1px,transparent 1px);background-size:28px 28px;background-attachment:fixed;font-family:'Nunito',sans-serif;color:var(--black);}
+        header{background:var(--red);position:sticky;top:0;z-index:1000;border-bottom:4px solid var(--black);box-shadow:0 6px 0 var(--red-dark);}
+        .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:70px;}
+        .logo{font-family:'Bangers',cursive;font-size:2rem;color:var(--yellow);text-shadow:3px 3px 0 var(--black);letter-spacing:2px;transform:rotate(-2deg);display:inline-block;}
+        .logo span{color:white;}
+        nav ul{list-style:none;display:flex;gap:4px;}
+        nav a{font-family:'Bangers',cursive;color:white;text-decoration:none;font-size:1.15rem;letter-spacing:1px;padding:6px 14px;border-radius:4px;border:2px solid transparent;transition:all .2s;}
+        nav a:hover,nav a.active{color:var(--yellow);border-color:var(--yellow);background:rgba(0,0,0,.15);}
+        .wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+        .sec-label{display:inline-block;font-family:'Permanent Marker',cursive;font-size:.85rem;color:var(--red);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;}
+        .sec-title{font-family:'Bangers',cursive;font-size:clamp(2rem,5vw,3rem);letter-spacing:2px;color:var(--black);text-shadow:3px 3px 0 var(--red-light);line-height:1.1;}
+        .btn-main{font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:1px;background:var(--red);color:white;text-decoration:none;padding:13px 30px;border:3px solid var(--black);border-radius:6px;box-shadow:5px 5px 0 var(--black);transition:all .15s;display:inline-block;}
+        .btn-main:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--black);}
+        .btn-yellow{font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:1px;background:var(--yellow);color:var(--black);text-decoration:none;padding:13px 30px;border:3px solid var(--black);border-radius:6px;box-shadow:5px 5px 0 var(--black);transition:all .15s;display:inline-block;}
+        .btn-yellow:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--black);}
+
+        /* PAGE HERO */
+        .page-hero{background:var(--black);border-bottom:5px solid var(--yellow);padding:80px 0 60px;position:relative;overflow:hidden;text-align:center;}
+        .page-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(230,18,18,.25) 1.5px,transparent 1.5px);background-size:20px 20px;}
+        .page-hero-accent{position:absolute;bottom:0;left:0;width:100%;height:6px;background:repeating-linear-gradient(90deg,var(--yellow) 0,var(--yellow) 20px,var(--red) 20px,var(--red) 40px);}
+        .page-hero-content{position:relative;z-index:2;}
+        .page-kicker{font-family:'Permanent Marker',cursive;font-size:1rem;color:var(--yellow);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+        .page-h1{font-family:'Bangers',cursive;font-size:clamp(3rem,8vw,5.5rem);color:white;letter-spacing:3px;text-shadow:5px 5px 0 var(--red-dark);line-height:1;margin-bottom:14px;}
+        .page-h1 span{color:var(--yellow);}
+        .page-sub{font-size:1.1rem;color:#bbb;max-width:560px;margin:0 auto;line-height:1.7;}
+
+        /* BIO SECTION */
+        .bio-section{padding:80px 0 60px;}
+        .bio-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:50px;align-items:start;}
+        .bio-left{position:sticky;top:90px;}
+        .bio-portrait{
+            position:relative;border:5px solid var(--black);border-radius:10px;overflow:hidden;
+            box-shadow:10px 10px 0 var(--black);margin-bottom:20px;
+        }
+        .bio-portrait img{width:100%;display:block;}
+        .bio-ribbon{
+            position:absolute;top:20px;left:-6px;
+            background:var(--red);color:white;
+            font-family:'Bangers',cursive;font-size:.9rem;letter-spacing:2px;
+            padding:6px 18px 6px 14px;border:2px solid var(--black);border-radius:0 4px 4px 0;
+            box-shadow:3px 3px 0 var(--black);
+        }
+        .social-card{background:white;border:3px solid var(--black);border-radius:10px;padding:18px;box-shadow:5px 5px 0 var(--black);}
+        .social-card h4{font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:1px;color:var(--black);margin-bottom:12px;}
+        .social-link{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #eee;text-decoration:none;color:var(--gray);font-size:.9rem;font-weight:700;transition:color .2s;}
+        .social-link:last-child{border-bottom:none;}
+        .social-link:hover{color:var(--red);}
+        .social-icon{font-size:1.2rem;}
+
+        /* BIO RIGHT */
+        .bio-right{}
+        .bio-intro{font-family:'Bangers',cursive;font-size:2.8rem;letter-spacing:2px;color:var(--black);text-shadow:3px 3px 0 var(--red-light);line-height:1;margin-bottom:20px;}
+        .bio-intro span{color:var(--red);}
+        .bio-text{font-size:1rem;color:#555;line-height:1.85;margin-bottom:20px;}
+        .bio-highlight{
+            border-left:5px solid var(--red);padding:16px 20px;
+            background:white;border-radius:0 8px 8px 0;
+            font-family:'Permanent Marker',cursive;font-size:1.1rem;
+            color:var(--black);margin:24px 0;
+            box-shadow:4px 4px 0 var(--black);border:2px solid var(--black);border-left:5px solid var(--red);
+        }
+
+        /* SKILLS */
+        .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;}
+        .skill-item{background:white;border:2px solid var(--black);border-radius:8px;padding:14px;box-shadow:3px 3px 0 var(--black);}
+        .skill-name{font-family:'Bangers',cursive;font-size:1rem;letter-spacing:1px;color:var(--black);margin-bottom:6px;display:flex;justify-content:space-between;}
+        .skill-bar{height:10px;background:#eee;border-radius:5px;border:2px solid var(--black);overflow:hidden;}
+        .skill-fill{height:100%;background:var(--red);border-radius:3px;}
+
+        /* TIMELINE */
+        .timeline-section{padding:0 0 80px;}
+        .timeline{position:relative;padding:30px 0;}
+        .timeline::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:4px;background:var(--red);}
+        .tl-item{display:flex;gap:24px;align-items:flex-start;margin-bottom:32px;position:relative;}
+        .tl-dot{
+            flex-shrink:0;width:56px;height:56px;background:var(--yellow);
+            border:4px solid var(--black);border-radius:50%;
+            display:flex;align-items:center;justify-content:center;
+            font-family:'Bangers',cursive;font-size:1rem;letter-spacing:0;
+            box-shadow:3px 3px 0 var(--black);z-index:1;
+        }
+        .tl-card{background:white;border:3px solid var(--black);border-radius:10px;padding:18px 22px;box-shadow:5px 5px 0 var(--black);flex:1;}
+        .tl-year{font-family:'Bangers',cursive;font-size:1rem;letter-spacing:1px;color:var(--red);margin-bottom:4px;}
+        .tl-title{font-family:'Bangers',cursive;font-size:1.3rem;letter-spacing:1px;color:var(--black);margin-bottom:6px;}
+        .tl-desc{font-size:.88rem;color:#666;line-height:1.6;}
+
+        /* TOOLS */
+        .tools-section{
+            background:var(--black);border-top:5px solid var(--yellow);border-bottom:5px solid var(--yellow);
+            padding:70px 0;
+        }
+        .tools-section .sec-title{color:white;text-shadow:3px 3px 0 var(--red);}
+        .tools-section .sec-label{color:var(--yellow);}
+        .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;margin-top:36px;}
+        .tool-card{
+            background:rgba(255,255,255,.06);border:3px solid rgba(255,255,255,.12);
+            border-radius:10px;padding:22px 16px;text-align:center;transition:all .2s;
+        }
+        .tool-card:hover{border-color:var(--yellow);background:rgba(255,230,0,.06);transform:translateY(-4px);}
+        .tool-icon{font-size:2.2rem;margin-bottom:10px;}
+        .tool-name{font-family:'Bangers',cursive;font-size:1rem;letter-spacing:1px;color:white;}
+        .tool-desc{font-size:.75rem;color:#888;margin-top:4px;}
+
+        /* CTA */
+        .cta-band{background:var(--red);border-top:4px solid var(--black);border-bottom:4px solid var(--black);padding:70px 0;text-align:center;}
+        .cta-band h2{font-family:'Bangers',cursive;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:3px;color:white;text-shadow:4px 4px 0 var(--black);margin-bottom:14px;}
+        .cta-band p{color:rgba(255,255,255,.8);font-size:1.05rem;max-width:560px;margin:0 auto 28px;line-height:1.7;}
+
+        /* FOOTER */
+        footer{background:var(--black);color:white;border-top:5px solid var(--red);padding:50px 0 30px;}
+        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+        .footer-brand .logo{font-size:1.8rem;margin-bottom:14px;display:block;}
+        .footer-brand p{color:#999;font-size:.9rem;line-height:1.7;}
+        .footer-col h4{font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:2px;color:var(--yellow);margin-bottom:16px;}
+        .footer-col a{display:block;color:#aaa;text-decoration:none;margin-bottom:9px;font-size:.9rem;transition:color .2s,transform .2s;}
+        .footer-col a:hover{color:white;transform:translateX(4px);}
+        .social-row{display:flex;gap:10px;margin-top:16px;}
+        .soc{width:38px;height:38px;background:var(--red);color:white;border:2px solid var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:'Bangers',cursive;font-size:.9rem;transition:all .15s;}
+        .soc:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow);transform:translateY(-3px);}
+        .footer-bottom{border-top:1px solid #333;padding-top:24px;display:flex;justify-content:space-between;color:#555;font-size:.85rem;flex-wrap:wrap;gap:10px;}
+        .wa-float{position:fixed;bottom:90px;right:28px;width:56px;height:56px;background:#25D366;border:3px solid var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:4px 4px 0 var(--black);text-decoration:none;font-size:1.5rem;z-index:999;transition:all .2s;}
+        .wa-float:hover{transform:scale(1.1);}
+        @media(max-width:900px){.bio-grid{grid-template-columns:1fr;}.bio-left{position:static;}.footer-grid{grid-template-columns:1fr 1fr;}.skills-grid{grid-template-columns:1fr;}}
+        @media(max-width:640px){.header-inner{flex-wrap:wrap;height:auto;padding:12px 16px;gap:10px;}nav ul{flex-wrap:wrap;gap:2px;}.footer-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="logo">THE <span>FAN ART</span> STATION</div>
+        <nav><ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="shop.html">Tienda</a></li>
+            <li><a href="artists.html">Artistas</a></li>
+            <li><a href="about.html" class="active">Sobre Mí</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+        </ul></nav>
+        <a href="shop.html" style="font-family:'Bangers',cursive;font-size:1rem;background:var(--yellow);color:var(--black);border:3px solid var(--black);border-radius:6px;padding:6px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--black);transition:all .15s;letter-spacing:1px;text-decoration:none;">🛍️ Tienda</a>
+    </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="page-hero-content">
+        <p class="page-kicker">✦ El Artista Detrás de la Estación ✦</p>
+        <h1 class="page-h1">SOBRE <span>MÍ</span></h1>
+        <p class="page-sub">La historia detrás de los trazos, la pasión detrás del arte y el camino que me trajo hasta aquí.</p>
+    </div>
+    <div class="page-hero-accent"></div>
+</section>
+
+<!-- BIO -->
+<section class="bio-section">
+    <div class="wrap">
+        <div class="bio-grid">
+            <!-- LEFT -->
+            <div class="bio-left">
+                <div class="bio-portrait">
+                    <img src="https://picsum.photos/seed/aboutme/480/560" alt="Foto del artista">
+                    <span class="bio-ribbon">🎨 EL ARTISTA</span>
+                </div>
+                <div class="social-card">
+                    <h4>Encuéntrame aquí</h4>
+                    <a href="#" class="social-link"><span class="social-icon">📘</span> /TuNombreAqui</a>
+                    <a href="#" class="social-link"><span class="social-icon">📸</span> @tu_instagram</a>
+                    <a href="#" class="social-link"><span class="social-icon">🐦</span> @tu_twitter</a>
+                    <a href="https://www.redbubble.com/people/TU-NOMBRE/shop" class="social-link" target="_blank"><span class="social-icon">🛍️</span> Redbubble Store</a>
+                    <a href="mailto:info@thefanartstation.com" class="social-link"><span class="social-icon">📧</span> info@thefanartstation.com</a>
+                </div>
+            </div>
+            <!-- RIGHT -->
+            <div class="bio-right">
+                <h2 class="bio-intro">HOLA, SOY<br><span>TU NOMBRE</span></h2>
+                <p class="bio-text">Soy ilustrador digital y artista fan desde que recuerdo. Todo empezó con una pila de cómics bajo la cama y un cuaderno lleno de bocetos torpemente dibujados de mis héroes favoritos. Hoy, esos garabatos se han convertido en algo que puedes llevar contigo.</p>
+                <p class="bio-text">Me especializo en reinterpretar personajes icónicos de cómics americanos, manga japonés y universos de videojuegos clásicos con un estilo propio que mezcla la dinamismo del cómic occidental con la expresividad del anime, todo sobre una base de paleta audaz y línea contundente.</p>
+                <div class="bio-highlight">
+                    "Cada obra es una carta de amor a los universos que me formaron y a la comunidad fan que los mantiene vivos."
+                </div>
+                <p class="bio-text">Fundé The Fan Art Station como un espacio donde el arte fan sea tratado con la misma seriedad y calidad que cualquier otra forma de arte. Aquí no hay límites: si te apasiona un personaje, merece una obra que le haga justicia.</p>
+
+                <!-- SKILLS -->
+                <div style="margin-top:30px;">
+                    <span class="sec-label">Especialidades</span>
+                    <h3 style="font-family:'Bangers',cursive;font-size:1.5rem;letter-spacing:1px;margin-bottom:16px;">MIS HABILIDADES</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-name">Ilustración Digital <span>95%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Estilo Cómic <span>90%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Arte Anime <span>88%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Pop Art Retro <span>85%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Diseño de Personajes <span>92%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Tipografía Cómic <span>80%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
+                    <a href="shop.html" class="btn-main">🛒 Ver mis Obras</a>
+                    <a href="contact.html" class="btn-yellow">📩 Contactar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+    <div class="wrap">
+        <span class="sec-label">Mi trayectoria</span>
+        <h2 class="sec-title" style="margin-bottom:36px;">EL CAMINO HASTA AQUÍ</h2>
+        <div class="timeline">
+            <div class="tl-item">
+                <div class="tl-dot">📚</div>
+                <div class="tl-card">
+                    <div class="tl-year">2015</div>
+                    <div class="tl-title">El Comienzo</div>
+                    <p class="tl-desc">Primeros bocetos serios de fan art. Descubrí el arte digital y no volví a soltar la tableta. Los cómics y el anime eran mi única inspiración.</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot">🖥️</div>
+                <div class="tl-card">
+                    <div class="tl-year">2017</div>
+                    <div class="tl-title">Primera Venta Digital</div>
+                    <p class="tl-desc">Publiqué mis primeras obras en Redbubble y DeviantArt. La respuesta fue increíble: la primera venta llegó en las primeras 48 horas.</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot">🏆</div>
+                <div class="tl-card">
+                    <div class="tl-year">2019</div>
+                    <div class="tl-title">Top Seller en Redbubble</div>
+                    <p class="tl-desc">Alcancé el estatus de Top Seller con más de 500 ventas ese año. El poster de "Neon Hero" se convirtió en mi obra más vendida de todos los tiempos.</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot">🚀</div>
+                <div class="tl-card">
+                    <div class="tl-year">2022</div>
+                    <div class="tl-title">The Fan Art Station</div>
+                    <p class="tl-desc">Lancé esta plataforma para centralizar mi obra, mejorar la experiencia de los fans y hacer crecer la comunidad de arte fan latinoamericana.</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-dot">⭐</div>
+                <div class="tl-card">
+                    <div class="tl-year">HOY</div>
+                    <div class="tl-title">Seguimos Creciendo</div>
+                    <p class="tl-desc">+50 obras, colaboraciones con otros artistas y una comunidad fan que sigue creciendo cada semana. El mejor capítulo está por escribirse.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section">
+    <div class="wrap">
+        <span class="sec-label">Mi kit creativo</span>
+        <h2 class="sec-title" style="color:white;text-shadow:3px 3px 0 var(--red);">LAS HERRAMIENTAS</h2>
+        <div class="tools-grid">
+            <div class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name">Procreate</div><div class="tool-desc">Ilustración principal</div></div>
+            <div class="tool-card"><div class="tool-icon">🖥️</div><div class="tool-name">Photoshop</div><div class="tool-desc">Post-producción</div></div>
+            <div class="tool-card"><div class="tool-icon">✏️</div><div class="tool-name">Illustrator</div><div class="tool-desc">Vectores y logos</div></div>
+            <div class="tool-card"><div class="tool-icon">📱</div><div class="tool-name">iPad Pro</div><div class="tool-desc">Hardware principal</div></div>
+            <div class="tool-card"><div class="tool-icon">🖊️</div><div class="tool-name">Apple Pencil</div><div class="tool-desc">Precision táctil</div></div>
+            <div class="tool-card"><div class="tool-icon">🎭</div><div class="tool-name">Clip Studio</div><div class="tool-desc">Estilo manga/cómic</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+    <div class="wrap">
+        <h2>¿TE GUSTÓ LO QUE VES?</h2>
+        <p>Ahora imagínalo en tu pared, en tu camiseta, en tu escritorio. Todo disponible en Redbubble.</p>
+        <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
+            <a href="shop.html" class="btn-yellow">🛒 Ver Tienda</a>
+            <a href="contact.html" style="font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:1px;background:transparent;color:white;text-decoration:none;padding:13px 30px;border:3px solid white;border-radius:6px;transition:all .15s;display:inline-block;">📩 Hablar con el Artista</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo">THE <span>FAN ART</span> STATION</span>
+                <p>Arte fan original creado con pasión. Todos los productos disponibles en Redbubble con envío a todo el mundo.</p>
+                <div class="social-row">
+                    <a href="#" class="soc">FB</a><a href="#" class="soc">IG</a><a href="#" class="soc">TW</a><a href="https://www.redbubble.com" class="soc" target="_blank">RB</a>
+                </div>
+            </div>
+            <div class="footer-col"><h4>Tienda</h4><a href="shop.html">Superhéroes</a><a href="shop.html">Villanos</a><a href="shop.html">Anime</a><a href="shop.html">Retro</a></div>
+            <div class="footer-col"><h4>Info</h4><a href="index.html">Inicio</a><a href="shop.html">Tienda</a><a href="artists.html">Artistas</a><a href="about.html">Sobre Mí</a><a href="contact.html">Contacto</a></div>
+            <div class="footer-col"><h4>Ayuda</h4><a href="#">Envíos</a><a href="#">Devoluciones</a><a href="#">FAQ</a><a href="contact.html">Contacto</a></div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 The Fan Art Station. Todos los derechos reservados.</span>
+            <span>Hecho con ❤️ y mucha tinta</span>
+        </div>
+    </div>
+</footer>
+<a href="https://wa.me/521TUNUMERO" class="wa-float">💬</a>
+</body>
+</html>
